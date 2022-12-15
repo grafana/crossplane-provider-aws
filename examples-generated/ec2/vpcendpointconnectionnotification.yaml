@@ -11,39 +11,11 @@ spec:
     connectionEvents:
     - Accept
     - Reject
-    connectionNotificationArnSelector:
-      matchLabels:
-        testing.upbound.io/example-name: topic
+    connectionNotificationArn: ${aws_sns_topic.topic.arn}
     region: us-west-1
     vpcEndpointServiceIdSelector:
       matchLabels:
         testing.upbound.io/example-name: foo
-
----
-
-apiVersion: sns.aws.upbound.io/v1beta1
-kind: Topic
-metadata:
-  annotations:
-    meta.upbound.io/example-id: ec2/v1beta1/vpcendpointconnectionnotification
-  labels:
-    testing.upbound.io/example-name: topic
-  name: topic
-spec:
-  forProvider:
-    policy: |
-      {
-          "Version":"2012-10-17",
-          "Statement":[{
-              "Effect": "Allow",
-              "Principal": {
-                  "Service": "vpce.amazonaws.com"
-              },
-              "Action": "SNS:Publish",
-              "Resource": "arn:aws:sns:*:*:vpce-notification-topic"
-          }]
-      }
-    region: us-west-1
 
 ---
 

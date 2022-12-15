@@ -13,7 +13,7 @@ import (
 	v1 "github.com/crossplane/crossplane-runtime/apis/common/v1"
 )
 
-type SecurityGroupEgressObservation struct {
+type EgressObservation struct {
 
 	// List of CIDR blocks.
 	CidrBlocks []*string `json:"cidrBlocks,omitempty" tf:"cidr_blocks,omitempty"`
@@ -43,10 +43,10 @@ type SecurityGroupEgressObservation struct {
 	ToPort *float64 `json:"toPort,omitempty" tf:"to_port,omitempty"`
 }
 
-type SecurityGroupEgressParameters struct {
+type EgressParameters struct {
 }
 
-type SecurityGroupIngressObservation struct {
+type IngressObservation struct {
 
 	// List of CIDR blocks.
 	CidrBlocks []*string `json:"cidrBlocks,omitempty" tf:"cidr_blocks,omitempty"`
@@ -76,7 +76,7 @@ type SecurityGroupIngressObservation struct {
 	ToPort *float64 `json:"toPort,omitempty" tf:"to_port,omitempty"`
 }
 
-type SecurityGroupIngressParameters struct {
+type IngressParameters struct {
 }
 
 type SecurityGroupObservation struct {
@@ -85,13 +85,13 @@ type SecurityGroupObservation struct {
 	Arn *string `json:"arn,omitempty" tf:"arn,omitempty"`
 
 	// Configuration block for egress rules. Can be specified multiple times for each egress rule. Each egress block supports fields documented below. This argument is processed in attribute-as-blocks mode.
-	Egress []SecurityGroupEgressObservation `json:"egress,omitempty" tf:"egress,omitempty"`
+	Egress []EgressObservation `json:"egress,omitempty" tf:"egress,omitempty"`
 
 	// ID of the security group.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
 	// Configuration block for ingress rules. Can be specified multiple times for each ingress rule. Each ingress block supports fields documented below. This argument is processed in attribute-as-blocks mode.
-	Ingress []SecurityGroupIngressObservation `json:"ingress,omitempty" tf:"ingress,omitempty"`
+	Ingress []IngressObservation `json:"ingress,omitempty" tf:"ingress,omitempty"`
 
 	// Owner ID.
 	OwnerID *string `json:"ownerId,omitempty" tf:"owner_id,omitempty"`

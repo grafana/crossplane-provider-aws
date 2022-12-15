@@ -52,16 +52,6 @@ func (in *AuthParameters) DeepCopyInto(out *AuthParameters) {
 		*out = new(string)
 		**out = **in
 	}
-	if in.SecretArnRef != nil {
-		in, out := &in.SecretArnRef, &out.SecretArnRef
-		*out = new(v1.Reference)
-		(*in).DeepCopyInto(*out)
-	}
-	if in.SecretArnSelector != nil {
-		in, out := &in.SecretArnSelector, &out.SecretArnSelector
-		*out = new(v1.Selector)
-		(*in).DeepCopyInto(*out)
-	}
 	if in.Username != nil {
 		in, out := &in.Username, &out.Username
 		*out = new(string)
