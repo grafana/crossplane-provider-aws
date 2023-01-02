@@ -561,39 +561,39 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	"aws_rds_cluster_role_association": FormattedIdentifierFromProvider(",", "db_cluster_identifier", "role_arn"),
 	// aws_rds_global_cluster can be imported by using the RDS Global Cluster identifie
 	"aws_rds_global_cluster": config.ParameterAsIdentifier("global_cluster_identifier"),
+
+	// route53
 	//
-	//	// route53
-	//	//
-	//	// N1PA6795SAMPLE
-	//	"aws_route53_delegation_set": config.IdentifierFromProvider,
-	//	// abcdef11-2222-3333-4444-555555fedcba
-	//	"aws_route53_health_check": config.IdentifierFromProvider,
-	//	// Z1D633PJN98FT9
-	//	"aws_route53_hosted_zone_dnssec": config.IdentifierFromProvider,
-	//	// Imported by using the Route 53 Hosted Zone identifier and KMS Key
-	//	// identifier, separated by a comma (,), e.g., Z1D633PJN98FT9,example
-	//	// disabled until it's successfully tested
-	//	// "aws_route53_key_signing_key": FormattedIdentifierUserDefinedNameLast("name", ",", "hosted_zone_id"),
-	//	// xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
-	//	// disabled until it's successfully tested
-	//	// "aws_route53_query_log": config.IdentifierFromProvider,
-	//	// Imported using ID of the record, which is the zone identifier, record
-	//	// name, and record type, separated by underscores (_)
-	//	// Z4KAPRWWNC7JR_dev.example.com_NS
-	//	"aws_route53_record": config.IdentifierFromProvider,
-	//	// Z123456ABCDEFG:vpc-12345678
-	//	"aws_route53_vpc_association_authorization": FormattedIdentifierFromProvider(":", "zone_id", "vpc_id"),
-	//	// Z1D633PJN98FT9
-	//	"aws_route53_zone": config.IdentifierFromProvider,
-	//	// Z123456ABCDEFG:vpc-12345678
-	//	// disabled until it's successfully tested
-	//	// "aws_route53_zone_association": FormattedIdentifierFromProvider(":", "zone_id", "vpc_id"),
-	//	// Imported using the id and version, e.g.,
-	//	// 01a52019-d16f-422a-ae72-c306d2b6df7e/1
-	//	"aws_route53_traffic_policy": config.IdentifierFromProvider,
-	//	// df579d9a-6396-410e-ac22-e7ad60cf9e7e
-	//	"aws_route53_traffic_policy_instance": config.IdentifierFromProvider,
-	//
+	// N1PA6795SAMPLE
+	"aws_route53_delegation_set": config.IdentifierFromProvider,
+	// abcdef11-2222-3333-4444-555555fedcba
+	"aws_route53_health_check": config.IdentifierFromProvider,
+	// Z1D633PJN98FT9
+	"aws_route53_hosted_zone_dnssec": config.IdentifierFromProvider,
+	// Imported by using the Route 53 Hosted Zone identifier and KMS Key
+	// identifier, separated by a comma (,), e.g., Z1D633PJN98FT9,example
+	// disabled until it's successfully tested
+	// "aws_route53_key_signing_key": FormattedIdentifierUserDefinedNameLast("name", ",", "hosted_zone_id"),
+	// xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+	// disabled until it's successfully tested
+	// "aws_route53_query_log": config.IdentifierFromProvider,
+	// Imported using ID of the record, which is the zone identifier, record
+	// name, and record type, separated by underscores (_)
+	// Z4KAPRWWNC7JR_dev.example.com_NS
+	"aws_route53_record": config.IdentifierFromProvider,
+	// Z123456ABCDEFG:vpc-12345678
+	"aws_route53_vpc_association_authorization": FormattedIdentifierFromProvider(":", "zone_id", "vpc_id"),
+	// Z1D633PJN98FT9
+	"aws_route53_zone": config.IdentifierFromProvider,
+	// Z123456ABCDEFG:vpc-12345678
+	// disabled until it's successfully tested
+	// "aws_route53_zone_association": FormattedIdentifierFromProvider(":", "zone_id", "vpc_id"),
+	// Imported using the id and version, e.g.,
+	// 01a52019-d16f-422a-ae72-c306d2b6df7e/1
+	"aws_route53_traffic_policy": config.IdentifierFromProvider,
+	// df579d9a-6396-410e-ac22-e7ad60cf9e7e
+	"aws_route53_traffic_policy_instance": config.IdentifierFromProvider,
+
 	//	// route53resolver
 	//	//
 	//	// rdsc-be1866ecc1683e95

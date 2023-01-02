@@ -15,6 +15,7 @@ import (
 	v1beta1iam "github.com/upbound/provider-aws/apis/iam/v1beta1"
 	v1beta1kms "github.com/upbound/provider-aws/apis/kms/v1beta1"
 	v1beta1rds "github.com/upbound/provider-aws/apis/rds/v1beta1"
+	v1beta1route53 "github.com/upbound/provider-aws/apis/route53/v1beta1"
 	v1beta1s3 "github.com/upbound/provider-aws/apis/s3/v1beta1"
 	v1beta1apis "github.com/upbound/provider-aws/apis/v1beta1"
 )
@@ -27,6 +28,7 @@ func init() {
 		v1beta1iam.SchemeBuilder.AddToScheme,
 		v1beta1kms.SchemeBuilder.AddToScheme,
 		v1beta1rds.SchemeBuilder.AddToScheme,
+		v1beta1route53.SchemeBuilder.AddToScheme,
 		v1beta1s3.SchemeBuilder.AddToScheme,
 		v1beta1apis.SchemeBuilder.AddToScheme,
 	)

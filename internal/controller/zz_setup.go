@@ -41,6 +41,14 @@ import (
 	securitygrouprds "github.com/upbound/provider-aws/internal/controller/rds/securitygroup"
 	snapshot "github.com/upbound/provider-aws/internal/controller/rds/snapshot"
 	subnetgroup "github.com/upbound/provider-aws/internal/controller/rds/subnetgroup"
+	delegationset "github.com/upbound/provider-aws/internal/controller/route53/delegationset"
+	healthcheck "github.com/upbound/provider-aws/internal/controller/route53/healthcheck"
+	hostedzonednssec "github.com/upbound/provider-aws/internal/controller/route53/hostedzonednssec"
+	record "github.com/upbound/provider-aws/internal/controller/route53/record"
+	trafficpolicy "github.com/upbound/provider-aws/internal/controller/route53/trafficpolicy"
+	trafficpolicyinstance "github.com/upbound/provider-aws/internal/controller/route53/trafficpolicyinstance"
+	vpcassociationauthorization "github.com/upbound/provider-aws/internal/controller/route53/vpcassociationauthorization"
+	zone "github.com/upbound/provider-aws/internal/controller/route53/zone"
 	bucket "github.com/upbound/provider-aws/internal/controller/s3/bucket"
 	bucketaccelerateconfiguration "github.com/upbound/provider-aws/internal/controller/s3/bucketaccelerateconfiguration"
 	bucketacl "github.com/upbound/provider-aws/internal/controller/s3/bucketacl"
@@ -101,6 +109,14 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		securitygrouprds.Setup,
 		snapshot.Setup,
 		subnetgroup.Setup,
+		delegationset.Setup,
+		healthcheck.Setup,
+		hostedzonednssec.Setup,
+		record.Setup,
+		trafficpolicy.Setup,
+		trafficpolicyinstance.Setup,
+		vpcassociationauthorization.Setup,
+		zone.Setup,
 		bucket.Setup,
 		bucketaccelerateconfiguration.Setup,
 		bucketacl.Setup,
