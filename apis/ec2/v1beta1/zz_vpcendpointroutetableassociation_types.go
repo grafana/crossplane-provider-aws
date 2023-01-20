@@ -27,18 +27,8 @@ type VPCEndpointRouteTableAssociationParameters struct {
 	Region *string `json:"region" tf:"-"`
 
 	// Identifier of the EC2 Route Table to be associated with the VPC Endpoint.
-	// +crossplane:generate:reference:type=github.com/upbound/provider-aws/apis/ec2/v1beta1.RouteTable
-	// +crossplane:generate:reference:extractor=github.com/upbound/upjet/pkg/resource.ExtractResourceID()
-	// +kubebuilder:validation:Optional
-	RouteTableID *string `json:"routeTableId,omitempty" tf:"route_table_id,omitempty"`
-
-	// Reference to a RouteTable in ec2 to populate routeTableId.
-	// +kubebuilder:validation:Optional
-	RouteTableIDRef *v1.Reference `json:"routeTableIdRef,omitempty" tf:"-"`
-
-	// Selector for a RouteTable in ec2 to populate routeTableId.
-	// +kubebuilder:validation:Optional
-	RouteTableIDSelector *v1.Selector `json:"routeTableIdSelector,omitempty" tf:"-"`
+	// +kubebuilder:validation:Required
+	RouteTableID *string `json:"routeTableId" tf:"route_table_id,omitempty"`
 
 	// Identifier of the VPC Endpoint with which the EC2 Route Table will be associated.
 	// +crossplane:generate:reference:type=github.com/upbound/provider-aws/apis/ec2/v1beta1.VPCEndpoint
