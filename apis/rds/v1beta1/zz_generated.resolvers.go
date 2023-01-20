@@ -13,7 +13,6 @@ import (
 	v1beta13 "github.com/upbound/provider-aws/apis/iam/v1beta1"
 	v1beta1 "github.com/upbound/provider-aws/apis/kms/v1beta1"
 	v1beta11 "github.com/upbound/provider-aws/apis/s3/v1beta1"
-	v1beta14 "github.com/upbound/provider-aws/apis/secretsmanager/v1beta1"
 	common "github.com/upbound/provider-aws/config/common"
 	resource "github.com/upbound/upjet/pkg/resource"
 	client "sigs.k8s.io/controller-runtime/pkg/client"
@@ -449,24 +448,6 @@ func (mg *Proxy) ResolveReferences(ctx context.Context, c client.Reader) error {
 	var mrsp reference.MultiResolutionResponse
 	var err error
 
-	for i3 := 0; i3 < len(mg.Spec.ForProvider.Auth); i3++ {
-		rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
-			CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.Auth[i3].SecretArn),
-			Extract:      resource.ExtractParamPath("arn", true),
-			Reference:    mg.Spec.ForProvider.Auth[i3].SecretArnRef,
-			Selector:     mg.Spec.ForProvider.Auth[i3].SecretArnSelector,
-			To: reference.To{
-				List:    &v1beta14.SecretList{},
-				Managed: &v1beta14.Secret{},
-			},
-		})
-		if err != nil {
-			return errors.Wrap(err, "mg.Spec.ForProvider.Auth[i3].SecretArn")
-		}
-		mg.Spec.ForProvider.Auth[i3].SecretArn = reference.ToPtrValue(rsp.ResolvedValue)
-		mg.Spec.ForProvider.Auth[i3].SecretArnRef = rsp.ResolvedReference
-
-	}
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.RoleArn),
 		Extract:      common.ARNExtractor(),
