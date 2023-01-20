@@ -18,7 +18,7 @@ on:
 
 jobs:
   publish-service-artifacts:
-    uses: upbound/uptest/.github/workflows/provider-publish-service-artifacts.yml@main
+    uses: upbound/uptest/.github/workflows/provider-publish-service-artifacts.yml@e68d4a22389cf0f27545621a1ee0af705c7a5847
     with:
       subpackages: ${{ github.event.inputs.subpackages }}
       size: ${{ github.event.inputs.size }}
