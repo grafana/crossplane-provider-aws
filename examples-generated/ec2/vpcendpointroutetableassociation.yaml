@@ -9,9 +9,7 @@ metadata:
 spec:
   forProvider:
     region: us-west-1
-    routeTableIdSelector:
-      matchLabels:
-        testing.upbound.io/example-name: example
+    routeTableId: ${aws_route_table.example.id}
     vpcEndpointIdSelector:
       matchLabels:
         testing.upbound.io/example-name: example
