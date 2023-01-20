@@ -12,7 +12,8 @@ on:
 
 jobs:
   tag:
-    uses: upbound/uptest/.github/workflows/provider-tag.yml@main
+    # https://github.com/upbound/uptest/pull/135
+    uses: iainlane/uptest/.github/workflows/provider-tag.yml@b1cf74fba3d99e624ed71ccf91334e2df9d20a4f
     with:
       version: ${{ github.event.inputs.version }}
       message: ${{ github.event.inputs.message }}

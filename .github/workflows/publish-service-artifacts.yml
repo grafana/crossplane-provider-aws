@@ -18,8 +18,10 @@ on:
 
 jobs:
   publish-service-artifacts:
-    uses: upbound/uptest/.github/workflows/provider-publish-service-artifacts.yml@main
+    # https://github.com/upbound/uptest/pull/135
+    uses: iainlane/uptest/.github/workflows/provider-publish-service-artifacts.yml@b1cf74fba3d99e624ed71ccf91334e2df9d20a4f
     with:
+      large-runner: "\"ubuntu-latest\""
       subpackages: ${{ github.event.inputs.subpackages }}
       size: ${{ github.event.inputs.size }}
       concurrency: ${{ github.event.inputs.concurrency }}

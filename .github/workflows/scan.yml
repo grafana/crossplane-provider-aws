@@ -18,7 +18,7 @@ permissions:
 env:
   SUPPORTED_RELEASES_NUMBER: '1'
   # comma separated list of images, without tag
-  IMAGES: "xpkg.upbound.io/upbound/provider-aws"
+  IMAGES: "xpkg.upbound.io/grafana/provider-aws"
 
 jobs:
   setup-vars:
@@ -40,7 +40,8 @@ jobs:
           echo "We are going to scan the last ${supported_releases_number} releases for: ${images}"
 
   scan:
-    uses: upbound/uptest/.github/workflows/scan.yml@main
+    # https://github.com/upbound/uptest/pull/135
+    uses: iainlane/uptest/.github/workflows/scan.yml@b1cf74fba3d99e624ed71ccf91334e2df9d20a4f
     needs:
       - setup-vars
     with:

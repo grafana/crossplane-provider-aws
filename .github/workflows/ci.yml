@@ -10,7 +10,10 @@ on:
 
 jobs:
   ci:
-    uses: upbound/uptest/.github/workflows/provider-ci.yml@main
+    # https://github.com/upbound/uptest/pull/135
+    uses: iainlane/uptest/.github/workflows/provider-ci.yml@b1cf74fba3d99e624ed71ccf91334e2df9d20a4f
+    with:
+      large-runner: "\"ubuntu-latest\""
     secrets:
       UPBOUND_MARKETPLACE_PUSH_ROBOT_USR: ${{ secrets.UPBOUND_MARKETPLACE_PUSH_ROBOT_USR }}
       UPBOUND_MARKETPLACE_PUSH_ROBOT_PSW: ${{ secrets.UPBOUND_MARKETPLACE_PUSH_ROBOT_PSW }}

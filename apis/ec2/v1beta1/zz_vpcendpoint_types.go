@@ -47,7 +47,7 @@ type DNSOptionsParameters struct {
 	DNSRecordIPType *string `json:"dnsRecordIpType,omitempty" tf:"dns_record_ip_type,omitempty"`
 }
 
-type VPCEndpointInitParameters_2 struct {
+type VPCEndpointInitParameters struct {
 
 	// Accept the VPC endpoint (the VPC endpoint and service need to be in the same AWS account).
 	AutoAccept *bool `json:"autoAccept,omitempty" tf:"auto_accept,omitempty"`
@@ -72,7 +72,7 @@ type VPCEndpointInitParameters_2 struct {
 	VPCEndpointType *string `json:"vpcEndpointType,omitempty" tf:"vpc_endpoint_type,omitempty"`
 }
 
-type VPCEndpointObservation_2 struct {
+type VPCEndpointObservation struct {
 
 	// The Amazon Resource Name (ARN) of the VPC endpoint.
 	Arn *string `json:"arn,omitempty" tf:"arn,omitempty"`
@@ -143,7 +143,7 @@ type VPCEndpointObservation_2 struct {
 	VPCID *string `json:"vpcId,omitempty" tf:"vpc_id,omitempty"`
 }
 
-type VPCEndpointParameters_2 struct {
+type VPCEndpointParameters struct {
 
 	// Accept the VPC endpoint (the VPC endpoint and service need to be in the same AWS account).
 	// +kubebuilder:validation:Optional
@@ -210,7 +210,7 @@ type VPCEndpointParameters_2 struct {
 // VPCEndpointSpec defines the desired state of VPCEndpoint
 type VPCEndpointSpec struct {
 	v1.ResourceSpec `json:",inline"`
-	ForProvider     VPCEndpointParameters_2 `json:"forProvider"`
+	ForProvider     VPCEndpointParameters `json:"forProvider"`
 	// THIS IS AN ALPHA FIELD. Do not use it in production. It is not honored
 	// unless the relevant Crossplane feature flag is enabled, and may be
 	// changed or removed without notice.
@@ -222,13 +222,13 @@ type VPCEndpointSpec struct {
 	// required on creation, but we do not desire to update them after creation,
 	// for example because of an external controller is managing them, like an
 	// autoscaler.
-	InitProvider VPCEndpointInitParameters_2 `json:"initProvider,omitempty"`
+	InitProvider VPCEndpointInitParameters `json:"initProvider,omitempty"`
 }
 
 // VPCEndpointStatus defines the observed state of VPCEndpoint.
 type VPCEndpointStatus struct {
 	v1.ResourceStatus `json:",inline"`
-	AtProvider        VPCEndpointObservation_2 `json:"atProvider,omitempty"`
+	AtProvider        VPCEndpointObservation `json:"atProvider,omitempty"`
 }
 
 // +kubebuilder:object:root=true

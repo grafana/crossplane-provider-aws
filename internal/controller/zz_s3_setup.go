@@ -31,7 +31,6 @@ import (
 	bucketversioning "github.com/upbound/provider-aws/internal/controller/s3/bucketversioning"
 	bucketwebsiteconfiguration "github.com/upbound/provider-aws/internal/controller/s3/bucketwebsiteconfiguration"
 	object "github.com/upbound/provider-aws/internal/controller/s3/object"
-	objectcopy "github.com/upbound/provider-aws/internal/controller/s3/objectcopy"
 )
 
 // Setup_s3 creates all controllers with the supplied logger and adds them to
@@ -60,7 +59,6 @@ func Setup_s3(mgr ctrl.Manager, o controller.Options) error {
 		bucketversioning.Setup,
 		bucketwebsiteconfiguration.Setup,
 		object.Setup,
-		objectcopy.Setup,
 	} {
 		if err := setup(mgr, o); err != nil {
 			return err

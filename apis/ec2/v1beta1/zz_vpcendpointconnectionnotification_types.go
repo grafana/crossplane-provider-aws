@@ -18,6 +18,9 @@ type VPCEndpointConnectionNotificationInitParameters struct {
 	// One or more endpoint events for which to receive notifications.
 	ConnectionEvents []*string `json:"connectionEvents,omitempty" tf:"connection_events,omitempty"`
 
+	// The ARN of the SNS topic for the notifications.
+	ConnectionNotificationArn *string `json:"connectionNotificationArn,omitempty" tf:"connection_notification_arn,omitempty"`
+
 	// The ID of the VPC Endpoint to receive notifications for.
 	VPCEndpointID *string `json:"vpcEndpointId,omitempty" tf:"vpc_endpoint_id,omitempty"`
 }
@@ -53,18 +56,8 @@ type VPCEndpointConnectionNotificationParameters struct {
 	ConnectionEvents []*string `json:"connectionEvents,omitempty" tf:"connection_events,omitempty"`
 
 	// The ARN of the SNS topic for the notifications.
-	// +crossplane:generate:reference:type=github.com/upbound/provider-aws/apis/sns/v1beta1.Topic
-	// +crossplane:generate:reference:extractor=github.com/upbound/upjet/pkg/resource.ExtractParamPath("arn",true)
 	// +kubebuilder:validation:Optional
 	ConnectionNotificationArn *string `json:"connectionNotificationArn,omitempty" tf:"connection_notification_arn,omitempty"`
-
-	// Reference to a Topic in sns to populate connectionNotificationArn.
-	// +kubebuilder:validation:Optional
-	ConnectionNotificationArnRef *v1.Reference `json:"connectionNotificationArnRef,omitempty" tf:"-"`
-
-	// Selector for a Topic in sns to populate connectionNotificationArn.
-	// +kubebuilder:validation:Optional
-	ConnectionNotificationArnSelector *v1.Selector `json:"connectionNotificationArnSelector,omitempty" tf:"-"`
 
 	// Region is the region you'd like your resource to be created in.
 	// +upjet:crd:field:TFTag=-
@@ -127,6 +120,7 @@ type VPCEndpointConnectionNotification struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.connectionEvents) || has(self.initProvider.connectionEvents)",message="connectionEvents is a required parameter"
+	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.connectionNotificationArn) || has(self.initProvider.connectionNotificationArn)",message="connectionNotificationArn is a required parameter"
 	Spec   VPCEndpointConnectionNotificationSpec   `json:"spec"`
 	Status VPCEndpointConnectionNotificationStatus `json:"status,omitempty"`
 }

@@ -7,7 +7,8 @@ on:
       - unlabeled
 
 jobs:
+  # https://github.com/upbound/uptest/pull/135
   community-issue-triage:
-    uses: upbound/uptest/.github/workflows/issue-triage.yml@main
+    uses: iainlane/uptest/.github/workflows/issue-triage.yml@b1cf74fba3d99e624ed71ccf91334e2df9d20a4f
     secrets:
       UPBOUND_BOT_GITHUB_TOKEN: ${{ secrets.UPBOUND_COMMUNITY_BOT_GITHUB_TOKEN }}

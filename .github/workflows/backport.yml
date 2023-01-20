@@ -12,4 +12,5 @@ on:
 
 jobs:
   backport:
-    uses: upbound/uptest/.github/workflows/provider-backport.yml@main
+    # https://github.com/upbound/uptest/pull/135
+    uses: iainlane/uptest/.github/workflows/provider-backport.yml@b1cf74fba3d99e624ed71ccf91334e2df9d20a4f

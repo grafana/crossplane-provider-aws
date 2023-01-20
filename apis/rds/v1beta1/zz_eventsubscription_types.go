@@ -21,6 +21,9 @@ type EventSubscriptionInitParameters struct {
 	// A list of event categories for a SourceType that you want to subscribe to. See http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Events.html or run aws rds describe-event-categories.
 	EventCategories []*string `json:"eventCategories,omitempty" tf:"event_categories,omitempty"`
 
+	// The SNS topic to send events to.
+	SnsTopic *string `json:"snsTopic,omitempty" tf:"sns_topic,omitempty"`
+
 	// A list of identifiers of the event sources for which events will be returned. If not specified, then all sources are included in the response. If specified, a source_type must also be specified.
 	SourceIds []*string `json:"sourceIds,omitempty" tf:"source_ids,omitempty"`
 
@@ -80,18 +83,8 @@ type EventSubscriptionParameters struct {
 	Region *string `json:"region" tf:"-"`
 
 	// The SNS topic to send events to.
-	// +crossplane:generate:reference:type=github.com/upbound/provider-aws/apis/sns/v1beta1.Topic
-	// +crossplane:generate:reference:extractor=github.com/upbound/upjet/pkg/resource.ExtractParamPath("arn",true)
 	// +kubebuilder:validation:Optional
 	SnsTopic *string `json:"snsTopic,omitempty" tf:"sns_topic,omitempty"`
-
-	// Reference to a Topic in sns to populate snsTopic.
-	// +kubebuilder:validation:Optional
-	SnsTopicRef *v1.Reference `json:"snsTopicRef,omitempty" tf:"-"`
-
-	// Selector for a Topic in sns to populate snsTopic.
-	// +kubebuilder:validation:Optional
-	SnsTopicSelector *v1.Selector `json:"snsTopicSelector,omitempty" tf:"-"`
 
 	// A list of identifiers of the event sources for which events will be returned. If not specified, then all sources are included in the response. If specified, a source_type must also be specified.
 	// +kubebuilder:validation:Optional
@@ -142,8 +135,9 @@ type EventSubscriptionStatus struct {
 type EventSubscription struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
-	Spec              EventSubscriptionSpec   `json:"spec"`
-	Status            EventSubscriptionStatus `json:"status,omitempty"`
+	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.snsTopic) || has(self.initProvider.snsTopic)",message="snsTopic is a required parameter"
+	Spec   EventSubscriptionSpec   `json:"spec"`
+	Status EventSubscriptionStatus `json:"status,omitempty"`
 }
 
 // +kubebuilder:object:root=true

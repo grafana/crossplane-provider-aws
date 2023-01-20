@@ -5,7 +5,8 @@ on:
 
 jobs:
   open-bump-pr:
-    uses: upbound/uptest/.github/workflows/native-provider-bump.yml@main
+    # https://github.com/upbound/uptest/pull/135
+    uses: iainlane/uptest/.github/workflows/native-provider-bump.yml@b1cf74fba3d99e624ed71ccf91334e2df9d20a4f
     with:
       provider-source: hashicorp/aws
       go-version: 1.19
