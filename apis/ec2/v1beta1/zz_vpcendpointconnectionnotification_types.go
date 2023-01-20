@@ -32,18 +32,8 @@ type VPCEndpointConnectionNotificationParameters struct {
 	ConnectionEvents []*string `json:"connectionEvents" tf:"connection_events,omitempty"`
 
 	// The ARN of the SNS topic for the notifications.
-	// +crossplane:generate:reference:type=github.com/upbound/provider-aws/apis/sns/v1beta1.Topic
-	// +crossplane:generate:reference:extractor=github.com/upbound/upjet/pkg/resource.ExtractParamPath("arn",true)
-	// +kubebuilder:validation:Optional
-	ConnectionNotificationArn *string `json:"connectionNotificationArn,omitempty" tf:"connection_notification_arn,omitempty"`
-
-	// Reference to a Topic in sns to populate connectionNotificationArn.
-	// +kubebuilder:validation:Optional
-	ConnectionNotificationArnRef *v1.Reference `json:"connectionNotificationArnRef,omitempty" tf:"-"`
-
-	// Selector for a Topic in sns to populate connectionNotificationArn.
-	// +kubebuilder:validation:Optional
-	ConnectionNotificationArnSelector *v1.Selector `json:"connectionNotificationArnSelector,omitempty" tf:"-"`
+	// +kubebuilder:validation:Required
+	ConnectionNotificationArn *string `json:"connectionNotificationArn" tf:"connection_notification_arn,omitempty"`
 
 	// Region is the region you'd like your resource to be created in.
 	// +upjet:crd:field:TFTag=-

@@ -16,9 +16,7 @@ spec:
     - events:
       - s3:ObjectCreated:*
       filterSuffix: .log
-      topicArnSelector:
-        matchLabels:
-          testing.upbound.io/example-name: topic
+      topicArn: ${aws_sns_topic.topic.arn}
 
 ---
 
@@ -33,33 +31,6 @@ metadata:
   name: bucket
 spec:
   forProvider:
-    region: us-west-1
-
----
-
-apiVersion: sns.aws.upbound.io/v1beta1
-kind: Topic
-metadata:
-  annotations:
-    meta.upbound.io/example-id: s3/v1beta1/bucketnotification
-  labels:
-    testing.upbound.io/example-name: topic
-  name: topic
-spec:
-  forProvider:
-    policy: |
-      {
-          "Version":"2012-10-17",
-          "Statement":[{
-              "Effect": "Allow",
-              "Principal": { "Service": "s3.amazonaws.com" },
-              "Action": "SNS:Publish",
-              "Resource": "arn:aws:sns:*:*:s3-event-notification-topic",
-              "Condition":{
-                  "ArnLike":{"aws:SourceArn":"${aws_s3_bucket.bucket.arn}"}
-              }
-          }]
-      }
     region: us-west-1
 
 ---
