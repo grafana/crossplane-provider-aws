@@ -53,18 +53,8 @@ type AuthParameters struct {
 	IAMAuth *string `json:"iamAuth,omitempty" tf:"iam_auth,omitempty"`
 
 	// The Amazon Resource Name (ARN) representing the secret that the proxy uses to authenticate to the RDS DB instance or Aurora DB cluster. These secrets are stored within Amazon Secrets Manager.
-	// +crossplane:generate:reference:type=github.com/upbound/provider-aws/apis/secretsmanager/v1beta1.Secret
-	// +crossplane:generate:reference:extractor=github.com/upbound/upjet/pkg/resource.ExtractParamPath("arn",true)
 	// +kubebuilder:validation:Optional
 	SecretArn *string `json:"secretArn,omitempty" tf:"secret_arn,omitempty"`
-
-	// Reference to a Secret in secretsmanager to populate secretArn.
-	// +kubebuilder:validation:Optional
-	SecretArnRef *v1.Reference `json:"secretArnRef,omitempty" tf:"-"`
-
-	// Selector for a Secret in secretsmanager to populate secretArn.
-	// +kubebuilder:validation:Optional
-	SecretArnSelector *v1.Selector `json:"secretArnSelector,omitempty" tf:"-"`
 
 	// The name of the database user to which the proxy connects.
 	// +kubebuilder:validation:Optional

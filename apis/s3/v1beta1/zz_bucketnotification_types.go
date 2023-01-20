@@ -150,18 +150,8 @@ type QueueParameters struct {
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
 	// SQS queue ARN.
-	// +crossplane:generate:reference:type=github.com/upbound/provider-aws/apis/sqs/v1beta1.Queue
-	// +crossplane:generate:reference:extractor=github.com/upbound/upjet/pkg/resource.ExtractParamPath("arn",true)
-	// +kubebuilder:validation:Optional
-	QueueArn *string `json:"queueArn,omitempty" tf:"queue_arn,omitempty"`
-
-	// Reference to a Queue in sqs to populate queueArn.
-	// +kubebuilder:validation:Optional
-	QueueArnRef *v1.Reference `json:"queueArnRef,omitempty" tf:"-"`
-
-	// Selector for a Queue in sqs to populate queueArn.
-	// +kubebuilder:validation:Optional
-	QueueArnSelector *v1.Selector `json:"queueArnSelector,omitempty" tf:"-"`
+	// +kubebuilder:validation:Required
+	QueueArn *string `json:"queueArn" tf:"queue_arn,omitempty"`
 }
 
 type TopicObservation struct {
@@ -201,18 +191,8 @@ type TopicParameters struct {
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
 	// SNS topic ARN.
-	// +crossplane:generate:reference:type=github.com/upbound/provider-aws/apis/sns/v1beta1.Topic
-	// +crossplane:generate:reference:extractor=github.com/upbound/upjet/pkg/resource.ExtractParamPath("arn",true)
-	// +kubebuilder:validation:Optional
-	TopicArn *string `json:"topicArn,omitempty" tf:"topic_arn,omitempty"`
-
-	// Reference to a Topic in sns to populate topicArn.
-	// +kubebuilder:validation:Optional
-	TopicArnRef *v1.Reference `json:"topicArnRef,omitempty" tf:"-"`
-
-	// Selector for a Topic in sns to populate topicArn.
-	// +kubebuilder:validation:Optional
-	TopicArnSelector *v1.Selector `json:"topicArnSelector,omitempty" tf:"-"`
+	// +kubebuilder:validation:Required
+	TopicArn *string `json:"topicArn" tf:"topic_arn,omitempty"`
 }
 
 // BucketNotificationSpec defines the desired state of BucketNotification
