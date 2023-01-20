@@ -35,7 +35,7 @@ type DNSOptionsParameters struct {
 	DNSRecordIPType *string `json:"dnsRecordIpType,omitempty" tf:"dns_record_ip_type,omitempty"`
 }
 
-type VPCEndpointObservation_2 struct {
+type VPCEndpointObservation struct {
 
 	// The Amazon Resource Name (ARN) of the VPC endpoint.
 	Arn *string `json:"arn,omitempty" tf:"arn,omitempty"`
@@ -78,7 +78,7 @@ type VPCEndpointObservation_2 struct {
 	TagsAll map[string]*string `json:"tagsAll,omitempty" tf:"tags_all,omitempty"`
 }
 
-type VPCEndpointParameters_2 struct {
+type VPCEndpointParameters struct {
 
 	// Accept the VPC endpoint (the VPC endpoint and service need to be in the same AWS account).
 	// +kubebuilder:validation:Optional
@@ -145,13 +145,13 @@ type VPCEndpointParameters_2 struct {
 // VPCEndpointSpec defines the desired state of VPCEndpoint
 type VPCEndpointSpec struct {
 	v1.ResourceSpec `json:",inline"`
-	ForProvider     VPCEndpointParameters_2 `json:"forProvider"`
+	ForProvider     VPCEndpointParameters `json:"forProvider"`
 }
 
 // VPCEndpointStatus defines the observed state of VPCEndpoint.
 type VPCEndpointStatus struct {
 	v1.ResourceStatus `json:",inline"`
-	AtProvider        VPCEndpointObservation_2 `json:"atProvider,omitempty"`
+	AtProvider        VPCEndpointObservation `json:"atProvider,omitempty"`
 }
 
 // +kubebuilder:object:root=true

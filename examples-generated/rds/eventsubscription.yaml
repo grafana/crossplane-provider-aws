@@ -20,9 +20,7 @@ spec:
     - recovery
     - restoration
     region: us-west-1
-    snsTopicSelector:
-      matchLabels:
-        testing.upbound.io/example-name: default
+    snsTopic: ${aws_sns_topic.default.arn}
     sourceIds:
     - ${aws_db_instance.default.id}
     sourceType: db-instance
@@ -54,20 +52,6 @@ spec:
       namespace: upbound-system
     region: us-west-1
     username: foo
-
----
-
-apiVersion: sns.aws.upbound.io/v1beta1
-kind: Topic
-metadata:
-  annotations:
-    meta.upbound.io/example-id: rds/v1beta1/eventsubscription
-  labels:
-    testing.upbound.io/example-name: default
-  name: default
-spec:
-  forProvider:
-    region: us-west-1
 
 ---
 

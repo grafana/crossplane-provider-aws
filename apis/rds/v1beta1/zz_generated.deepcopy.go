@@ -57,16 +57,6 @@ func (in *AuthParameters) DeepCopyInto(out *AuthParameters) {
 		*out = new(string)
 		**out = **in
 	}
-	if in.SecretArnRef != nil {
-		in, out := &in.SecretArnRef, &out.SecretArnRef
-		*out = new(v1.Reference)
-		(*in).DeepCopyInto(*out)
-	}
-	if in.SecretArnSelector != nil {
-		in, out := &in.SecretArnSelector, &out.SecretArnSelector
-		*out = new(v1.Selector)
-		(*in).DeepCopyInto(*out)
-	}
 	if in.Username != nil {
 		in, out := &in.Username, &out.Username
 		*out = new(string)
@@ -2769,16 +2759,6 @@ func (in *EventSubscriptionParameters) DeepCopyInto(out *EventSubscriptionParame
 		in, out := &in.SnsTopic, &out.SnsTopic
 		*out = new(string)
 		**out = **in
-	}
-	if in.SnsTopicRef != nil {
-		in, out := &in.SnsTopicRef, &out.SnsTopicRef
-		*out = new(v1.Reference)
-		(*in).DeepCopyInto(*out)
-	}
-	if in.SnsTopicSelector != nil {
-		in, out := &in.SnsTopicSelector, &out.SnsTopicSelector
-		*out = new(v1.Selector)
-		(*in).DeepCopyInto(*out)
 	}
 	if in.SourceIds != nil {
 		in, out := &in.SourceIds, &out.SourceIds

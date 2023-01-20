@@ -44,18 +44,8 @@ type EventSubscriptionParameters struct {
 	Region *string `json:"region" tf:"-"`
 
 	// The SNS topic to send events to.
-	// +crossplane:generate:reference:type=github.com/upbound/provider-aws/apis/sns/v1beta1.Topic
-	// +crossplane:generate:reference:extractor=github.com/upbound/upjet/pkg/resource.ExtractParamPath("arn",true)
-	// +kubebuilder:validation:Optional
-	SnsTopic *string `json:"snsTopic,omitempty" tf:"sns_topic,omitempty"`
-
-	// Reference to a Topic in sns to populate snsTopic.
-	// +kubebuilder:validation:Optional
-	SnsTopicRef *v1.Reference `json:"snsTopicRef,omitempty" tf:"-"`
-
-	// Selector for a Topic in sns to populate snsTopic.
-	// +kubebuilder:validation:Optional
-	SnsTopicSelector *v1.Selector `json:"snsTopicSelector,omitempty" tf:"-"`
+	// +kubebuilder:validation:Required
+	SnsTopic *string `json:"snsTopic" tf:"sns_topic,omitempty"`
 
 	// A list of identifiers of the event sources for which events will be returned. If not specified, then all sources are included in the response. If specified, a source_type must also be specified.
 	// +kubebuilder:validation:Optional
