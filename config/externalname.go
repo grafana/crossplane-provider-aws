@@ -2635,6 +2635,7 @@ func init() {
 		"aws_iam_user_policy_attachment":                     {},
 		"aws_iam_user":                                       {},
 		"aws_kms_key":                                        {},
+		"aws_lb_target_group":                                {},
 		"aws_rds_cluster_activity_stream":                    {},
 		"aws_rds_cluster_endpoint":                           {},
 		"aws_rds_cluster_instance":                           {},
