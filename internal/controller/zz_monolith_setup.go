@@ -22,6 +22,7 @@ import (
 	vpcendpointsubnetassociation "github.com/upbound/provider-aws/internal/controller/ec2/vpcendpointsubnetassociation"
 	cluster "github.com/upbound/provider-aws/internal/controller/eks/cluster"
 	clusterauth "github.com/upbound/provider-aws/internal/controller/eks/clusterauth"
+	lbtargetgroup "github.com/upbound/provider-aws/internal/controller/elbv2/lbtargetgroup"
 	accesskey "github.com/upbound/provider-aws/internal/controller/iam/accesskey"
 	policy "github.com/upbound/provider-aws/internal/controller/iam/policy"
 	role "github.com/upbound/provider-aws/internal/controller/iam/role"
@@ -101,6 +102,7 @@ func Setup_monolith(mgr ctrl.Manager, o controller.Options) error {
 		vpcendpointsubnetassociation.Setup,
 		cluster.Setup,
 		clusterauth.Setup,
+		lbtargetgroup.Setup,
 		accesskey.Setup,
 		policy.Setup,
 		role.Setup,

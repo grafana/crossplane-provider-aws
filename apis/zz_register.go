@@ -12,6 +12,7 @@ import (
 
 	v1beta1 "github.com/upbound/provider-aws/apis/ec2/v1beta1"
 	v1beta1eks "github.com/upbound/provider-aws/apis/eks/v1beta1"
+	v1beta1elbv2 "github.com/upbound/provider-aws/apis/elbv2/v1beta1"
 	v1beta1iam "github.com/upbound/provider-aws/apis/iam/v1beta1"
 	v1beta1kms "github.com/upbound/provider-aws/apis/kms/v1beta1"
 	v1beta1rds "github.com/upbound/provider-aws/apis/rds/v1beta1"
@@ -26,6 +27,7 @@ func init() {
 	AddToSchemes = append(AddToSchemes,
 		v1beta1.SchemeBuilder.AddToScheme,
 		v1beta1eks.SchemeBuilder.AddToScheme,
+		v1beta1elbv2.SchemeBuilder.AddToScheme,
 		v1beta1iam.SchemeBuilder.AddToScheme,
 		v1beta1kms.SchemeBuilder.AddToScheme,
 		v1beta1rds.SchemeBuilder.AddToScheme,
