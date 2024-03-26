@@ -2626,6 +2626,7 @@ func init() {
 		"aws_db_snapshot":                                    {},
 		"aws_db_subnet_group":                                {},
 		"aws_ec2_managed_prefix_list":                        {},
+		"aws_eip":                                            {},
 		"aws_eks_cluster":                                    {},
 		"aws_iam_access_key":                                 {},
 		"aws_iam_policy":                                     {},
