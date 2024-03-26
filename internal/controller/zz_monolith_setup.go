@@ -9,6 +9,7 @@ import (
 
 	"github.com/upbound/upjet/pkg/controller"
 
+	eip "github.com/upbound/provider-aws/internal/controller/ec2/eip"
 	managedprefixlist "github.com/upbound/provider-aws/internal/controller/ec2/managedprefixlist"
 	securitygroup "github.com/upbound/provider-aws/internal/controller/ec2/securitygroup"
 	securitygrouprule "github.com/upbound/provider-aws/internal/controller/ec2/securitygrouprule"
@@ -89,6 +90,7 @@ import (
 // the supplied manager.
 func Setup_monolith(mgr ctrl.Manager, o controller.Options) error {
 	for _, setup := range []func(ctrl.Manager, controller.Options) error{
+		eip.Setup,
 		managedprefixlist.Setup,
 		securitygroup.Setup,
 		securitygrouprule.Setup,
