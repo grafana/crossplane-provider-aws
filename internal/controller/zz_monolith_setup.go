@@ -10,7 +10,9 @@ import (
 	"github.com/upbound/upjet/pkg/controller"
 
 	eip "github.com/upbound/provider-aws/internal/controller/ec2/eip"
+	instance "github.com/upbound/provider-aws/internal/controller/ec2/instance"
 	managedprefixlist "github.com/upbound/provider-aws/internal/controller/ec2/managedprefixlist"
+	networkinterface "github.com/upbound/provider-aws/internal/controller/ec2/networkinterface"
 	securitygroup "github.com/upbound/provider-aws/internal/controller/ec2/securitygroup"
 	securitygrouprule "github.com/upbound/provider-aws/internal/controller/ec2/securitygrouprule"
 	subnet "github.com/upbound/provider-aws/internal/controller/ec2/subnet"
@@ -44,7 +46,7 @@ import (
 	dbsnapshotcopy "github.com/upbound/provider-aws/internal/controller/rds/dbsnapshotcopy"
 	eventsubscription "github.com/upbound/provider-aws/internal/controller/rds/eventsubscription"
 	globalcluster "github.com/upbound/provider-aws/internal/controller/rds/globalcluster"
-	instance "github.com/upbound/provider-aws/internal/controller/rds/instance"
+	instancerds "github.com/upbound/provider-aws/internal/controller/rds/instance"
 	instanceroleassociation "github.com/upbound/provider-aws/internal/controller/rds/instanceroleassociation"
 	optiongroup "github.com/upbound/provider-aws/internal/controller/rds/optiongroup"
 	parametergroup "github.com/upbound/provider-aws/internal/controller/rds/parametergroup"
@@ -91,7 +93,9 @@ import (
 func Setup_monolith(mgr ctrl.Manager, o controller.Options) error {
 	for _, setup := range []func(ctrl.Manager, controller.Options) error{
 		eip.Setup,
+		instance.Setup,
 		managedprefixlist.Setup,
+		networkinterface.Setup,
 		securitygroup.Setup,
 		securitygrouprule.Setup,
 		subnet.Setup,
@@ -125,7 +129,7 @@ func Setup_monolith(mgr ctrl.Manager, o controller.Options) error {
 		dbsnapshotcopy.Setup,
 		eventsubscription.Setup,
 		globalcluster.Setup,
-		instance.Setup,
+		instancerds.Setup,
 		instanceroleassociation.Setup,
 		optiongroup.Setup,
 		parametergroup.Setup,

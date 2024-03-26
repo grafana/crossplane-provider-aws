@@ -181,6 +181,189 @@ func (tr *EIP) GetTerraformSchemaVersion() int {
 	return 0
 }
 
+// GetTerraformResourceType returns Terraform resource type for this Instance
+func (mg *Instance) GetTerraformResourceType() string {
+	return "aws_instance"
+}
+
+// GetConnectionDetailsMapping for this Instance
+func (tr *Instance) GetConnectionDetailsMapping() map[string]string {
+	return nil
+}
+
+// GetObservation of this Instance
+func (tr *Instance) GetObservation() (map[string]any, error) {
+	o, err := json.TFParser.Marshal(tr.Status.AtProvider)
+	if err != nil {
+		return nil, err
+	}
+	base := map[string]any{}
+	return base, json.TFParser.Unmarshal(o, &base)
+}
+
+// SetObservation for this Instance
+func (tr *Instance) SetObservation(obs map[string]any) error {
+	p, err := json.TFParser.Marshal(obs)
+	if err != nil {
+		return err
+	}
+	return json.TFParser.Unmarshal(p, &tr.Status.AtProvider)
+}
+
+// GetID returns ID of underlying Terraform resource of this Instance
+func (tr *Instance) GetID() string {
+	if tr.Status.AtProvider.ID == nil {
+		return ""
+	}
+	return *tr.Status.AtProvider.ID
+}
+
+// GetParameters of this Instance
+func (tr *Instance) GetParameters() (map[string]any, error) {
+	p, err := json.TFParser.Marshal(tr.Spec.ForProvider)
+	if err != nil {
+		return nil, err
+	}
+	base := map[string]any{}
+	return base, json.TFParser.Unmarshal(p, &base)
+}
+
+// SetParameters for this Instance
+func (tr *Instance) SetParameters(params map[string]any) error {
+	p, err := json.TFParser.Marshal(params)
+	if err != nil {
+		return err
+	}
+	return json.TFParser.Unmarshal(p, &tr.Spec.ForProvider)
+}
+
+// GetInitParameters of this Instance
+func (tr *Instance) GetInitParameters() (map[string]any, error) {
+	p, err := json.TFParser.Marshal(tr.Spec.InitProvider)
+	if err != nil {
+		return nil, err
+	}
+	base := map[string]any{}
+	return base, json.TFParser.Unmarshal(p, &base)
+}
+
+// LateInitialize this Instance using its observed tfState.
+// returns True if there are any spec changes for the resource.
+func (tr *Instance) LateInitialize(attrs []byte) (bool, error) {
+	params := &InstanceParameters{}
+	if err := json.TFParser.Unmarshal(attrs, params); err != nil {
+		return false, errors.Wrap(err, "failed to unmarshal Terraform state parameters for late-initialization")
+	}
+	opts := []resource.GenericLateInitializerOption{resource.WithZeroValueJSONOmitEmptyFilter(resource.CNameWildcard)}
+	opts = append(opts, resource.WithNameFilter("AssociatePublicIPAddress"))
+	opts = append(opts, resource.WithNameFilter("CPUCoreCount"))
+	opts = append(opts, resource.WithNameFilter("CPUThreadsPerCore"))
+	opts = append(opts, resource.WithNameFilter("IPv6AddressCount"))
+	opts = append(opts, resource.WithNameFilter("IPv6Addresses"))
+	opts = append(opts, resource.WithNameFilter("NetworkInterface"))
+	opts = append(opts, resource.WithNameFilter("PrivateIP"))
+	opts = append(opts, resource.WithNameFilter("SourceDestCheck"))
+	opts = append(opts, resource.WithNameFilter("SubnetID"))
+	opts = append(opts, resource.WithNameFilter("VPCSecurityGroupIds"))
+
+	li := resource.NewGenericLateInitializer(opts...)
+	return li.LateInitialize(&tr.Spec.ForProvider, params)
+}
+
+// GetTerraformSchemaVersion returns the associated Terraform schema version
+func (tr *Instance) GetTerraformSchemaVersion() int {
+	return 1
+}
+
+// GetTerraformResourceType returns Terraform resource type for this NetworkInterface
+func (mg *NetworkInterface) GetTerraformResourceType() string {
+	return "aws_network_interface"
+}
+
+// GetConnectionDetailsMapping for this NetworkInterface
+func (tr *NetworkInterface) GetConnectionDetailsMapping() map[string]string {
+	return nil
+}
+
+// GetObservation of this NetworkInterface
+func (tr *NetworkInterface) GetObservation() (map[string]any, error) {
+	o, err := json.TFParser.Marshal(tr.Status.AtProvider)
+	if err != nil {
+		return nil, err
+	}
+	base := map[string]any{}
+	return base, json.TFParser.Unmarshal(o, &base)
+}
+
+// SetObservation for this NetworkInterface
+func (tr *NetworkInterface) SetObservation(obs map[string]any) error {
+	p, err := json.TFParser.Marshal(obs)
+	if err != nil {
+		return err
+	}
+	return json.TFParser.Unmarshal(p, &tr.Status.AtProvider)
+}
+
+// GetID returns ID of underlying Terraform resource of this NetworkInterface
+func (tr *NetworkInterface) GetID() string {
+	if tr.Status.AtProvider.ID == nil {
+		return ""
+	}
+	return *tr.Status.AtProvider.ID
+}
+
+// GetParameters of this NetworkInterface
+func (tr *NetworkInterface) GetParameters() (map[string]any, error) {
+	p, err := json.TFParser.Marshal(tr.Spec.ForProvider)
+	if err != nil {
+		return nil, err
+	}
+	base := map[string]any{}
+	return base, json.TFParser.Unmarshal(p, &base)
+}
+
+// SetParameters for this NetworkInterface
+func (tr *NetworkInterface) SetParameters(params map[string]any) error {
+	p, err := json.TFParser.Marshal(params)
+	if err != nil {
+		return err
+	}
+	return json.TFParser.Unmarshal(p, &tr.Spec.ForProvider)
+}
+
+// GetInitParameters of this NetworkInterface
+func (tr *NetworkInterface) GetInitParameters() (map[string]any, error) {
+	p, err := json.TFParser.Marshal(tr.Spec.InitProvider)
+	if err != nil {
+		return nil, err
+	}
+	base := map[string]any{}
+	return base, json.TFParser.Unmarshal(p, &base)
+}
+
+// LateInitialize this NetworkInterface using its observed tfState.
+// returns True if there are any spec changes for the resource.
+func (tr *NetworkInterface) LateInitialize(attrs []byte) (bool, error) {
+	params := &NetworkInterfaceParameters_2{}
+	if err := json.TFParser.Unmarshal(attrs, params); err != nil {
+		return false, errors.Wrap(err, "failed to unmarshal Terraform state parameters for late-initialization")
+	}
+	opts := []resource.GenericLateInitializerOption{resource.WithZeroValueJSONOmitEmptyFilter(resource.CNameWildcard)}
+	opts = append(opts, resource.WithNameFilter("InterfaceType"))
+	opts = append(opts, resource.WithNameFilter("IPv6AddressCount"))
+	opts = append(opts, resource.WithNameFilter("IPv6Addresses"))
+	opts = append(opts, resource.WithNameFilter("PrivateIPList"))
+	opts = append(opts, resource.WithNameFilter("PrivateIps"))
+
+	li := resource.NewGenericLateInitializer(opts...)
+	return li.LateInitialize(&tr.Spec.ForProvider, params)
+}
+
+// GetTerraformSchemaVersion returns the associated Terraform schema version
+func (tr *NetworkInterface) GetTerraformSchemaVersion() int {
+	return 0
+}
+
 // GetTerraformResourceType returns Terraform resource type for this SecurityGroup
 func (mg *SecurityGroup) GetTerraformResourceType() string {
 	return "aws_security_group"

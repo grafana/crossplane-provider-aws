@@ -10,7 +10,9 @@ import (
 	"github.com/upbound/upjet/pkg/controller"
 
 	eip "github.com/upbound/provider-aws/internal/controller/ec2/eip"
+	instance "github.com/upbound/provider-aws/internal/controller/ec2/instance"
 	managedprefixlist "github.com/upbound/provider-aws/internal/controller/ec2/managedprefixlist"
+	networkinterface "github.com/upbound/provider-aws/internal/controller/ec2/networkinterface"
 	securitygroup "github.com/upbound/provider-aws/internal/controller/ec2/securitygroup"
 	securitygrouprule "github.com/upbound/provider-aws/internal/controller/ec2/securitygrouprule"
 	subnet "github.com/upbound/provider-aws/internal/controller/ec2/subnet"
@@ -28,7 +30,9 @@ import (
 func Setup_ec2(mgr ctrl.Manager, o controller.Options) error {
 	for _, setup := range []func(ctrl.Manager, controller.Options) error{
 		eip.Setup,
+		instance.Setup,
 		managedprefixlist.Setup,
+		networkinterface.Setup,
 		securitygroup.Setup,
 		securitygrouprule.Setup,
 		subnet.Setup,
